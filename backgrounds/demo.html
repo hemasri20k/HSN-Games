@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Get Text Input on Button Click</title>
+</head>
+<body>
+    <form id="myForm">
+        <label for="textInput">Enter Text:</label>
+        <input type="text" id="textInput" name="textInput" />
+        <button type="button" id="submitButton">Get Text</button>
+    </form>
+
+    <script>
+        // Add an event listener to the button
+        document.getElementById('submitButton').addEventListener('click', function () {
+            // Retrieve the value of the text input
+            var inputValue = document.getElementById('textInput').value;
+
+            // Do something with the input value (e.g., display it)
+            alert('You entered: ' + inputValue);
+        });
+    </script>
+</body>
+</html>

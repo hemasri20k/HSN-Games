@@ -1,0 +1,249 @@
+<html>
+<head>
+ <meta charset="UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MARIO</title>
+  <Style>
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.game{
+    width: 100%;
+    height: 100vh;
+    border-bottom: 30px solid green;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(#87CEEB, #E0F6FF);
+}
+
+button {
+    background: green;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+    border: none;
+    padding: 1rem;
+    position: absolute;
+    right: 50vw;
+    top: 50vh;
+    cursor: pointer;
+    z-index: 1;
+}
+button:hover {
+    border: 2px solid green;
+    background: none;
+    color: green;
+}
+
+.game-over {
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.322);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.game-over h1 {
+    font-size: 3rem;
+    color: red;
+    text-align: center;
+    margin-top: 15rem;
+}
+
+.pipe {
+    position: absolute;
+    bottom: 0;
+    right: -80px;
+    width: 80px;
+}
+
+.mario{
+    width: 150px;
+    position: absolute;
+    bottom: 0;
+}
+
+.clouds {
+    width: 550px;
+    position: absolute;
+    top: 0;
+    animation: clouds-animation 20s infinite linear;
+}
+
+@keyframes clouds-animation {
+    from {
+        right: -550px;
+    }
+    to {
+        right: 100%;
+    }
+}
+
+.pipe-animation {
+    animation: pipe-animation 2s infinite linear;
+}
+
+@keyframes pipe-animation {
+    from {
+        right: -80px;
+    }
+
+    to {
+        right: 100%;
+    }
+}
+
+.jump {
+    animation: jump 800ms ease-out;
+}
+
+@keyframes jump {
+    0% {
+        bottom:0;
+    }
+
+    40% {
+        bottom: 200px;
+    }
+
+    50% {
+        bottom: 200px;
+    }
+
+    60% {
+        bottom: 200px;
+    }
+
+    100% {
+        bottom: 0;
+    }
+}
+  </Style>
+</head>
+<body>
+   <div class="game">
+    <img class="mario" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/4ddabef1-8390-424a-a828-f61e4df3d499/daraj8q-744f0563-d3f2-4a25-98a7-377abba7dc7b.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzRkZGFiZWYxLTgzOTAtNDI0YS1hODI4LWY2MWU0ZGYzZDQ5OVwvZGFyYWo4cS03NDRmMDU2My1kM2YyLTRhMjUtOThhNy0zNzdhYmJhN2RjN2IuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.KpbFWvWcQbuGNwF9TtupLcDKwLRFW8DAZLx404K5bAU" alt="mario">
+    <img class="pipe" src="pipe.png" alt="cano">
+    <img class="clouds" src="clouds.png" alt="nuvem">
+    <button class="start" onclick="startGame()">Start</button>
+   </div>
+
+    <div class="game-over"><h1>Game Over :</h1><button onclick="restartGame()">Restart</button></div>
+</body>
+<script>
+  const mario = document.querySelector('.mario')
+const pipe = document.querySelector('.pipe')
+
+const start = document.querySelector('.start')
+const gameOver = document.querySelector('.game-over')
+
+audioStart = new Audio('./src/audio/audio_theme.mp3')
+audioGameOver = new Audio('./src/audio/audio_gameover.mp3')
+
+
+const startGame = () => {
+  pipe.classList.add('pipe-animation')
+  start.style.display = 'none'
+
+  // audio
+  audioStart.play()
+}
+
+const restartGame = () => {
+  gameOver.style.display = 'none'
+  pipe.style.left = ''
+  pipe.style.right = '0'
+  mario.src = 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/4ddabef1-8390-424a-a828-f61e4df3d499/daraj8q-744f0563-d3f2-4a25-98a7-377abba7dc7b.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzRkZGFiZWYxLTgzOTAtNDI0YS1hODI4LWY2MWU0ZGYzZDQ5OVwvZGFyYWo4cS03NDRmMDU2My1kM2YyLTRhMjUtOThhNy0zNzdhYmJhN2RjN2IuZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.KpbFWvWcQbuGNwF9TtupLcDKwLRFW8DAZLx404K5bAU'
+  mario.style.width = '150px'
+  mario.style.bottom = '0'
+
+  start.style.display = 'none'
+
+  audioGameOver.pause()
+  audioGameOver.currentTime = 0;
+
+  audioStart.play()
+  audioStart.currentTime = 0;
+
+}
+
+const jump = () => {
+  mario.classList.add('jump')
+
+  setTimeout(() => {
+    mario.classList.remove('jump')
+  }, 800)
+}
+
+const loop = () => {
+  setInterval(() => {
+    const pipePosition = pipe.offsetLeft
+    const marioPosition = window
+      .getComputedStyle(mario)
+      .bottom.replace('px', ' ')
+
+    if (pipePosition <= 120 && pipePosition > 0 && marioPosition < 80) {
+      pipe.classList.remove('.pipe-animation')
+      pipe.style.left = `${pipePosition}px`
+
+      mario.classList.remove('.jump')
+      mario.style.bottom = `${marioPosition}px`
+
+      mario.src = './src/img/game-over.png'
+      mario.style.width = '80px'
+      mario.style.marginLeft = '50px'
+      
+      
+      function stopAudioStart() {
+        audioStart.pause()
+      }
+      stopAudioStart()
+      
+      audioGameOver.play()
+      
+      function stopAudio() {
+        audioGameOver.pause()
+      }
+      setTimeout(stopAudio, 7000)
+      
+      gameOver.style.display = 'flex'
+      
+      clearInterval(loop)
+    }
+  }, 10)
+}
+
+loop()
+
+document.addEventListener('keypress', e => {
+  const tecla = e.key
+  if (tecla === ' ') {
+    jump()
+  }
+})
+
+document.addEventListener('touchstart', e => {
+  if (e.touches.length) {
+    jump() 
+  }
+})
+
+document.addEventListener('keypress', e => {
+  const tecla = e.key
+  if (tecla === 'Enter') {
+    startGame()
+  }
+})
+</script>
+</html>
