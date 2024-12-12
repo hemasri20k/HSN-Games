@@ -1,0 +1,291 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HSN Games</title>
+    <link rel="icon" type="image" href="backgrounds/logo.png">
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+</script>
+<script type="text/javascript">
+ (function(){
+   emailjs.init("GSETeayQYeVI-gj0t");
+})();
+</script>
+    <style>
+        body{
+           
+            background-repeat: no-repeat;
+            background-size:cover;
+            animation: changebackground 45s infinite;
+        }
+        @keyframes changebackground{
+            0%{
+                background-image: url(joystick.webp);
+            }
+            25%{
+                background-image: url(background.jpg);
+               
+            }
+            50%{
+                background-image: url(rrr.jpg);
+            }
+         
+            100%{
+                background-image: url(bg5.jpg);
+            }
+        }
+        fieldset{
+             border-radius: 20px;
+            position: relative;
+           margin-right: 550px;
+            margin-top: 180px;
+            margin-left: 550px;
+            background-color: black;
+            box-Shadow : 0 0 30px #ff3393;
+        }
+        input{
+            border-radius: 5px;
+            height: 25px;
+            width:300px;
+            border-color: azure;
+            color: rgb(255, 0, 0);
+            font-size:medium;
+        }
+      #enteredotp{
+        border-radius: 5px;
+            height: 25px;
+            width:150px;
+            border-color: azure;
+            color: rgb(255, 0, 0);
+            font-size:medium;
+         
+         
+      }
+      #password{
+        border-radius: 5px;
+            height: 25px;
+            width:300px;
+            border-color: azure;
+            color: rgb(255, 0, 0);
+            font-size:medium;
+            visibility: hidden;
+            margin-top: 25px;
+
+      }
+      #repassword{
+        border-radius: 5px;
+            height: 25px;
+            width:300px;
+            border-color: azure;
+            color: rgb(255, 0, 0);
+            font-size:medium;
+            visibility: hidden;
+            margin-top: 25px;
+            margin-bottom: 25px;
+
+      }
+  
+      #otp{
+        border-radius: 5x;
+            height: 25px;
+            width:150px;
+            border-color: azure;
+            color: rgb(255, 0, 0);
+            font-size:medium;
+            visibility: hidden;
+      }
+
+button {
+  position: relative;
+  background: #444;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: none;
+  letter-spacing: 0.1rem;
+  font-size: 1rem;
+  padding: 1rem 3rem;
+  transition: 0.2s;
+}
+
+button:hover {
+  letter-spacing: 0.2rem;
+  padding: 1.1rem 3.1rem;
+  background: var(--clr);
+  color: var(--clr);
+  /* box-shadow: 0 0 35px var(--clr); */
+  animation: box 3s infinite;
+}
+
+button::before {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  background: #272822;
+}
+
+button span {
+  position: relative;
+  z-index: 1;
+}
+button i {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+button i::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 2px;
+  left: 80%;
+  top: -2px;
+  border: 2px solid var(--clr);
+  background: #272822;
+  transition: 0.2s;
+}
+
+button:hover i::before {
+  width: 15px;
+  left: 20%;
+  animation: move 3s infinite;
+}
+
+button i::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 2px;
+  left: 20%;
+  bottom: -2px;
+  border: 2px solid var(--clr);
+  background: #272822;
+  transition: 0.2s;
+}
+
+button:hover i::after {
+  width: 15px;
+  left: 80%;
+  animation: move 3s infinite;
+}
+
+@keyframes move {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes box {
+  0% {
+    box-shadow: #27272c;
+  }
+  50% {
+    box-shadow: 0 0 25px var(--clr);
+  }
+  100% {
+    box-shadow: #27272c;
+  }
+}
+#verify{
+    margin-left: 10px;
+}
+
+#submit{
+
+   
+    margin-left: 4.5cm;
+}
+    </style>
+</head>
+<body >
+    <form action="" method="POST" >
+        <fieldset>
+<legend style="text-align: center;color: azure; font-size: xx-large;font-family: Times new Roman;">Sign Up</legend>
+<div style="text-align: center;"><br>
+    <input type="text" placeholder="Enter the OTP" id="enteredotp" >
+    <button style="--clr:#0FF0FC" onclick="checkotp()" id="verify" ><span>Verify</span><i></i></button>
+
+</div>      
+</fieldset>
+    </form>
+    
+    <script>
+      function connectdb(){
+        alert("kk");
+      }
+        function preloadImages() {
+            const images = ['bg5.jpg','joystick.webp','rrr.jpg'];
+            images.forEach(imageUrl => {
+                new Image().src = imageUrl;
+            });
+        }
+        preloadImages();
+
+function checkotp(){
+const originalotp=localStorage.getItem('OTP');
+const enteredotp=document.getElementById("enteredotp").value;
+if(originalotp == enteredotp){  
+    var otp=true;
+}else{
+    alert("Incorrect OTP");  
+}
+if(otp){
+alert("Correct OTP");
+window.open("finalsignup.html");
+}
+//alert(o);
+}
+
+    </script>
+    
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body>
+</html>

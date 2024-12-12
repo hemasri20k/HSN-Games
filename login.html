@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HSN Games</title>
+    <link rel="icon" type="image" href="backgrounds/logo.png">
+    <style>
+        body{
+           
+            background-repeat: no-repeat;
+            background-size:cover;
+            animation: changebackground 45s infinite;
+        }
+        @keyframes changebackground{
+            0%{
+                background-image: url(joystick.webp);
+            }
+            25%{
+                background-image: url(background.jpg);
+               
+            }
+            50%{
+                background-image: url(rrr.jpg);
+                
+            }
+         
+            100%{
+                background-image: url(bg5.jpg);
+            }
+        }
+        fieldset{
+             border-radius: 20px;
+            position: relative;
+           margin-right: 550px;
+            margin-top: 180px;
+            margin-left: 550px;
+            background-color: black;
+            box-shadow: 0 0 30px #ff3333;
+        }
+        input{
+            border-radius: 5px;
+            height: 25px;
+            width:300px;
+            border-color: azure;
+            color: rgb(0, 0, 0);
+            font-size:medium;
+            box-shadow: 10px;
+        }
+      .signup{
+        border-radius: 5px;
+        height:35px;
+        width:90px;
+        box-shadow: 1px 1px 10px grey;
+        background-color: rgb(51, 60, 224);
+        color: white;
+        width:75px;
+      }
+      button {
+  position: relative;
+  background: #444;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: none;
+  letter-spacing: 0.1rem;
+  font-size: 1rem;
+  padding: 1rem 3rem;
+  transition: 0.2s;
+}
+
+button:hover {
+  letter-spacing: 0.2rem;
+  padding: 1.1rem 3.1rem;
+  background: var(--clr);
+  color: var(--clr);
+  /* box-shadow: 0 0 35px var(--clr); */
+  animation: box 3s infinite;
+}
+
+button::before {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  background: #272822;
+}
+
+button span {
+  position: relative;
+  z-index: 1;
+}
+button i {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+button i::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 2px;
+  left: 80%;
+  top: -2px;
+  border: 2px solid var(--clr);
+  background: #272822;
+  transition: 0.2s;
+}
+
+button:hover i::before {
+  width: 15px;
+  left: 20%;
+  animation: move 3s infinite;
+}
+
+button i::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 2px;
+  left: 20%;
+  bottom: -2px;
+  border: 2px solid var(--clr);
+  background: #272822;
+  transition: 0.2s;
+}
+
+button:hover i::after {
+  width: 15px;
+  left: 80%;
+  animation: move 3s infinite;
+}
+
+@keyframes move {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes box {
+  0% {
+    box-shadow: #27272c;
+  }
+  50% {
+    box-shadow: 0 0 25px var(--clr);
+  }
+  100% {
+    box-shadow: #27272c;
+  }
+}
+
+    </style>
+</head>
+<body >
+    <form id="loginform" method="post">
+        <fieldset>
+<legend style="text-align: center;color: azure; font-size: xx-large;font-family: Times new Roman;">Login</legend>
+<div style="text-align: center;"><br>
+    <input type="text" placeholder="Enter Your Username/Email" id="username" autocomplete="on" required> <br><br>
+    <input type="password" placeholder="Enter Your Password" id="password" required> <br><br><br>
+    <button style="--clr:#39FF14"><span>Let's Play</span><i></i></button>
+    <br><br>
+    <h3 style="color: white;">Don't have HSN account?<br><br><br><button style="--clr:#FF44CC" onclick="opensignup()"><span>SignUp</span><i></i></button></h3>
+<br><img src="backgrounds/logo.png" height="110px" ><h3 id="data"></h3>
+</div>      
+</fieldset>
+    </form>
+    <script>
+        function preloadImages() {
+            const images = ['bg5.jpg','joystick.webp','rrr.jpg','background.jpg'];
+            images.forEach(imageUrl => {
+                new Image().src = imageUrl;
+            });
+        }
+        preloadImages();
+
+        function opensignup()
+        {
+            window.open("signup.html");
+        }
+
+        function storedata()
+        {
+          var username=  document.getElementById("username").value;
+          var password=document.getElementById("password").value;
+          localStorage.setItem('username',username);
+          localStorage.setItem('password',password);
+        }
+     document.getElementById("playbutton").addEventListener('click',storedata);
+
+
+    </script>
+    
+</body>
+</html>
